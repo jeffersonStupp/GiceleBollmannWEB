@@ -1,0 +1,31 @@
+<div class="toolbar" role="banner">
+  <img width="150" alt="Angular Logo" src="\assets\symbol.png" />
+  <a
+    [routerLink]="['/principal']"
+    queryParamsHandling="preserve"
+    style="color: rgb(0, 0, 0); margin-right: 15px"
+    >Entrada de veículos</a
+  >
+  <a
+    [routerLink]="['/pessoa/listagem']"
+    queryParamsHandling="preserve"
+    style="color: rgb(0, 0, 0); margin-right: 15px"
+    >Listagem de pessoas</a
+  >
+  <a
+    [routerLink]="['/pessoa/listagem-endereco']"
+    queryParamsHandling="preserve"
+    style="color: rgb(0, 0, 0); margin-right: 15px"
+    >Listagem de endereços</a
+  >
+  <a
+    [routerLink]="['/pessoa/cadastro']"
+    queryParamsHandling="preserve"
+    style="color: rgb(0, 0, 0); margin-right: 15px"
+    >cadastro</a
+  >
+  <div class="spacer"></div>
+</div>
+<div style="margin-top: 100px">
+  <router-outlet></router-outlet>
+</div>
