@@ -6,7 +6,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClientJsonpModule,
+  HttpClientModule,
+} from '@angular/common/http';
 import { MenuPrincipalComponent } from './pages/menu-principal/menu-principal.component';
 
 import { BarraSuperiorComponent } from './components/barra-superior/barra-superior.component';
@@ -19,6 +23,15 @@ import { CpfPipe } from './pipes/cpf.pipe';
 import { TelefonePipe } from './pipes/telefone.pipe';
 import { PessoListagemEnderecoComponent } from './pages/pesso-listagem-endereco/pesso-listagem-endereco.component';
 import { DateFormatPipe } from './pipes/date-format.pipe';
+import { LoginComponent } from './pages/login/login.component';
+import { UsuarioListagemComponent } from './pages/usuario-listagem/usuario-listagem.component';
+import { UsuarioCadastroComponent } from './pages/usuario-cadastro/usuario-cadastro.component';
+import { UsuarioLogadoGuard } from './guards/usuario-logado.guards';
+import { AuthInterceptor } from './interceptors/requisicao.interceptor';
+import { EntradaVeiculosComponent } from './pages/entrada-veiculos/entrada-veiculos.component';
+import { ListaVeiculosEstacionadosComponent } from './pages/lista-veiculos-estacionados/lista-veiculos-estacionados.component';
+import { ListaVeiculosFinalizadosComponent } from './pages/lista-veiculos-finalizados/lista-veiculos-finalizados.component';
+import { DateTimeFormatPipe } from './pipes/date-time-format.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +45,13 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     TelefonePipe,
     PessoListagemEnderecoComponent,
     DateFormatPipe,
+    LoginComponent,
+    UsuarioListagemComponent,
+    UsuarioCadastroComponent,
+    EntradaVeiculosComponent,
+    ListaVeiculosEstacionadosComponent,
+    ListaVeiculosFinalizadosComponent,
+    DateTimeFormatPipe,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +65,14 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     ToastrModule.forRoot(),
     NgxMaskModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    UsuarioLogadoGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

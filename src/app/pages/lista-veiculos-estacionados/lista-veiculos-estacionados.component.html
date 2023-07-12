@@ -1,0 +1,45 @@
+<!-- <div class="container fluid"> -->
+<div class="containercustom">
+  <div class="centralizartexto">
+    <h3>Veiculos Estacionados</h3>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Placa</th>
+        <th scope="col">Entrada</th>
+        <th scope="col">Cliente</th>
+
+        <th>
+          <div class="input-group input-group-sm mb-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Entrada</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Insira a placa"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm"
+              mask="SSS-0A00"
+            />
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of listaestacionados">
+        <td>{{ c.id }}</td>
+        <td>{{ c.placa }}</td>
+        <td>{{ c.horaEntrada | dateTimeFormat }}</td>
+        <td>{{ c.pessoa }}</td>
+
+        <td>
+          <a id="excluir" class="btn btn-info">Saida</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

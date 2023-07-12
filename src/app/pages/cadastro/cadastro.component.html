@@ -9,6 +9,7 @@
     <div class="row">
       <h5>Dados Pessoais</h5>
       <hr class="form-group col-sm-12 col-md-12" />
+
       <!-- nome>> -->
       <div class="form-group col-sm-12 col-md-12 col-lg-6">
         <label class="form-control-label label-obrigatorio">Nome</label>
@@ -24,6 +25,7 @@
         ></app-validator>
       </div>
       <!-- <<nome -->
+
       <!-- cpf>> -->
       <div class="form-group col-sm-12 col-md-12 col-lg-6">
         <label class="form-control-label label-obrigatorio">Cpf</label>
@@ -40,13 +42,14 @@
         ></app-validator>
       </div>
       <!-- <<cpf -->
+
       <!-- RG>> -->
       <div class="form-group col-sm-12 col-md-12 col-lg-6">
-        <label class="form-control-label label-obrigatorio">RG</label>
+        <label class="form-control-label">Rg</label>
         <input
           type="text"
           class="form-control"
-          placeholder="Digite o RG"
+          placeholder="Digite o rg"
           formControlName="rg"
           mask="00.000.000-0"
         />
@@ -56,6 +59,7 @@
         ></app-validator>
       </div>
       <!-- <<RG -->
+
       <!-- telefone>> -->
       <div class="form-group col-sm-12 col-md-12 col-lg-6">
         <label class="form-control-label label-obrigatorio">Telefone</label>
@@ -72,6 +76,7 @@
         ></app-validator>
       </div>
       <!-- <<telefone -->
+
       <!-- datanascimento>> -->
       <div class="form-group col-sm-12 col-md-12 col-lg-6">
         <label class="form-control-label label-obrigatorio"
@@ -105,24 +110,25 @@
         ></app-validator>
       </div>
       <!-- <<email -->
+
       <h5>Endereço</h5>
       <hr class="form-group col-sm-12 col-md-12" />
 
       <!-- >>cep -->
       <div class="form-group col-sm-12 col-md-12 col-lg-6">
-        <label class="form-control-label label-obrigatorio">Cep</label>
+        <label class="form-control-label">Cep</label>
         <input
           type="text"
           class="form-control"
-          placeholder="Digite o Cep"
+          placeholder="Digite o cep"
           formControlName="cep"
           (ngModelChange)="this.aoAlterarCep()"
           mask="00000-000"
         />
-        <app-validator
+        <!-- <app-validator
           [formSubmitted]="this.formSubmetido"
           [errors]="this.formulario?.get('cep')?.errors"
-        ></app-validator>
+        ></app-validator> -->
       </div>
       <!-- <<cep -->
 
@@ -141,28 +147,31 @@
         ></app-validator>
       </div>
       <!-- <<rua -->
+
       <!-- >>numero -->
       <div class="form-group col-sm-12 col-md-12 col-lg-6">
-        <label class="form-control-label label-obrigatorio">Número</label>
+        <label class="form-control-label">Número</label>
         <input
           type="text"
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57"
           class="form-control"
           placeholder="Digite número"
           formControlName="numero"
         />
-        <app-validator
+        <!-- <app-validator
           [formSubmitted]="this.formSubmetido"
           [errors]="this.formulario?.get('numero')?.errors"
-        ></app-validator>
+        ></app-validator> -->
       </div>
       <!-- <<numero -->
+
       <!-- >>bairro -->
       <div class="form-group col-sm-12 col-md-12 col-lg-6">
         <label class="form-control-label label-obrigatorio">Bairro</label>
         <input
           type="text"
           class="form-control"
-          placeholder="Digite o Bairro"
+          placeholder="Digite o bairro"
           formControlName="bairro"
         />
         <app-validator
@@ -170,15 +179,15 @@
           [errors]="this.formulario?.get('bairro')?.errors"
         ></app-validator>
       </div>
-
       <!-- <<bairro -->
+
       <!-- >>cidade -->
       <div class="form-group col-sm-12 col-md-12 col-lg-6">
         <label class="form-control-label label-obrigatorio">Cidade</label>
         <input
           type="text"
           class="form-control"
-          placeholder="Digite a Cidade"
+          placeholder="Digite a cidade"
           formControlName="cidade"
         />
         <app-validator
@@ -198,6 +207,7 @@
           formControlName="estado"
         >
           <option selected>Escolha um estado</option>
+
           <option value="AC">Acre</option>
           <option value="AL">Alagoas</option>
           <option value="AP">Amapá</option>
