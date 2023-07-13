@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import Pessoa from 'src/app/models/pessoa.model';
@@ -12,6 +12,9 @@ import { VeiculosService } from 'src/app/services/veiculos.service';
   styleUrls: ['./lista-veiculos-estacionados.component.css'],
 })
 export class ListaVeiculosEstacionadosComponent implements OnInit {
+
+  @ViewChild('placaInput', { static: false }) placaInput: ElementRef;
+
   public formulario: FormGroup;
   public formSubmetido: boolean = false;
   public recarregarItensTabela: Subject<any> = new Subject<any>();
@@ -22,10 +25,12 @@ export class ListaVeiculosEstacionadosComponent implements OnInit {
     public veiculoService: VeiculosService,
     public alertService: AlertService
   ) {}
+
   public ngOnInit(): void {
     document.title = 'Veiculos Estacionados';
     this.obterVeiculosEstavionadosDaApi();
   }
+
   public obterVeiculosEstavionadosDaApi() {
     this.veiculoService.obterTodosQueNaoSairam().subscribe((resposta) => {
       if (resposta != null) {
@@ -33,6 +38,9 @@ export class ListaVeiculosEstacionadosComponent implements OnInit {
       } else {
         this.alertService.showToastrError('Erro na API');
       }
+    }, exception => {
+      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+      this.alertService.showToastrError('Erro na requisição', mensagemErro);
     });
   }
 
@@ -59,13 +67,20 @@ export class ListaVeiculosEstacionadosComponent implements OnInit {
       this.alertService.showToastrSuccess('Saída efetuada');
       this.obterVeiculosEstavionadosDaApi();
       this.recarregarItensTabela.next({});
+    }, exception => {
+      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+      this.alertService.showToastrError('Erro na requisição', mensagemErro);
     });
   }
-  public changePlaca(valor: any): void {
-    this.placa = valor;
-    alert(this.placa);
-  }
-  public confirmarEntrada(placa: string) {
+
+  public confirmarEntrada() {
+    const placa: string = this.placaInput.nativeElement.value;
+
+    if(placa.length < 8) {
+      this.alertService.showToastrError('Insira uma placa válida');
+      return
+    }
+
     let veiculo: Veiculo = new Veiculo();
 
     this.alertService.alertConfirm({
@@ -86,11 +101,15 @@ export class ListaVeiculosEstacionadosComponent implements OnInit {
   }
 
   private chamarApiParaEntrada(placa: string) {
-    alert(placa);
+    alert(placa); //TODO remover depois
     this.veiculoService.entrada(placa).subscribe((resposta) => {
       this.alertService.showToastrSuccess('Entrada efetuada');
       this.obterVeiculosEstavionadosDaApi();
       this.recarregarItensTabela.next({});
+    }, exception => {
+      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+      this.alertService.showToastrError('Erro na requisição', mensagemErro);
     });
   }
+
 }

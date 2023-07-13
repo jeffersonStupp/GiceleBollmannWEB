@@ -16,8 +16,8 @@
           <div style="display: flex; align-items: center">
 
               <input
+                #placaInput
                 type="text"
-                (ngModelChange)="this.changePlaca($event)"
                 class="form-control"
                 style="flex: 1"
                 placeholder="Insira a placa"
@@ -25,7 +25,7 @@
               />
               <button
                 class="btn btn-success"
-                (click)="this.confirmarEntrada('entrada')"
+                (click)="this.confirmarEntrada()"
               >
                 Entrada
               </button>
