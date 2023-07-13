@@ -9,8 +9,8 @@ export class VeiculosService {
   private urlbase = 'http://localhost:5201/veiculo/';
   constructor(public httpClient: HttpClient) {}
 
-  public entrada(veiculo: Veiculo) {
-    return this.httpClient.post<Veiculo>(this.urlbase + 'entrada', veiculo);
+  public entrada(placa: string) {
+    return this.httpClient.post<Veiculo>(this.urlbase + 'entrada', placa);
   }
   public saida(veiculo: Veiculo) {
     return this.httpClient.put<Veiculo>(this.urlbase + 'saida', veiculo);
@@ -29,5 +29,8 @@ export class VeiculosService {
   }
   public obterTodosQueJaSairam() {
     return this.httpClient.get<Veiculo[]>(this.urlbase + 'obterosquejasairam');
+  }
+  public excluir(id: number) {
+    return this.httpClient.delete<any>(this.urlbase + 'excluir/' + id);
   }
 }

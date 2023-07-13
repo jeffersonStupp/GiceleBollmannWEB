@@ -28,7 +28,7 @@ import { UsuarioListagemComponent } from './pages/usuario-listagem/usuario-lista
 import { UsuarioCadastroComponent } from './pages/usuario-cadastro/usuario-cadastro.component';
 import { UsuarioLogadoGuard } from './guards/usuario-logado.guards';
 import { AuthInterceptor } from './interceptors/requisicao.interceptor';
-import { EntradaVeiculosComponent } from './pages/entrada-veiculos/entrada-veiculos.component';
+
 import { ListaVeiculosEstacionadosComponent } from './pages/lista-veiculos-estacionados/lista-veiculos-estacionados.component';
 import { ListaVeiculosFinalizadosComponent } from './pages/lista-veiculos-finalizados/lista-veiculos-finalizados.component';
 import { DateTimeFormatPipe } from './pipes/date-time-format.pipe';
@@ -48,7 +48,6 @@ import { DateTimeFormatPipe } from './pipes/date-time-format.pipe';
     LoginComponent,
     UsuarioListagemComponent,
     UsuarioCadastroComponent,
-    EntradaVeiculosComponent,
     ListaVeiculosEstacionadosComponent,
     ListaVeiculosFinalizadosComponent,
     DateTimeFormatPipe,

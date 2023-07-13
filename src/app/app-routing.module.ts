@@ -9,7 +9,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { UsuarioListagemComponent } from './pages/usuario-listagem/usuario-listagem.component';
 import { UsuarioCadastroComponent } from './pages/usuario-cadastro/usuario-cadastro.component';
 import { UsuarioLogadoGuard } from './guards/usuario-logado.guards';
-import { EntradaVeiculosComponent } from './pages/entrada-veiculos/entrada-veiculos.component';
+
+import { ListaVeiculosEstacionadosComponent } from './pages/lista-veiculos-estacionados/lista-veiculos-estacionados.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/principal', pathMatch: 'full' },
@@ -42,7 +43,9 @@ const routes: Routes = [
       },
       {
         path: 'veiculos',
-        children: [{ path: 'entrada', component: EntradaVeiculosComponent }],
+        children: [
+          { path: 'entrada', component: ListaVeiculosEstacionadosComponent },
+        ],
       },
     ],
   },

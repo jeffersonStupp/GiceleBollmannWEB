@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import Veiculo from 'src/app/models/veiculo.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { VeiculosService } from 'src/app/services/veiculos.service';
@@ -9,7 +10,10 @@ import { VeiculosService } from 'src/app/services/veiculos.service';
   styleUrls: ['./lista-veiculos-finalizados.component.css'],
 })
 export class ListaVeiculosFinalizadosComponent implements OnInit {
+  @Input() recarregarItensTabela: Subject<any> = null;
+
   public listafinalizados: Veiculo[] = [];
+
   constructor(
     public veiculoService: VeiculosService,
     public alertService: AlertService
@@ -17,6 +21,12 @@ export class ListaVeiculosFinalizadosComponent implements OnInit {
   public ngOnInit(): void {
     document.title = 'Veiculos Finalizados';
     this.obterVeiculosFinalizadosDaApi();
+
+    if (this.recarregarItensTabela != null) {
+      this.recarregarItensTabela.subscribe((resposta) => {
+        this.obterVeiculosFinalizadosDaApi();
+      });
+    }
   }
   public obterVeiculosFinalizadosDaApi() {
     this.veiculoService.obterTodosQueJaSairam().subscribe((resposta) => {
@@ -25,6 +35,29 @@ export class ListaVeiculosFinalizadosComponent implements OnInit {
       } else {
         this.alertService.showToastrError('Erro na API');
       }
+    });
+  }
+  public confirmarExcluir(id: number) {
+    this.alertService.alertConfirm({
+      title: 'Atenção',
+      text: 'Você deseja realmente excluir o registro?',
+      confirmButtonText: 'Sim',
+      confirmButtonColor: 'green',
+      showCancelButton: true,
+      cancelButtonText: 'Não',
+      cancelButtonColor: 'red',
+      fn: () => {
+        this.chamarApiParaExcluir(id);
+      },
+      fnCancel: () => {
+        this.alertService.showToastrInfo('Operação cancelada!');
+      },
+    });
+  }
+  private chamarApiParaExcluir(id: number) {
+    this.veiculoService.excluir(id).subscribe((resposta) => {
+      this.alertService.showToastrSuccess('Registro excluido');
+      this.obterVeiculosFinalizadosDaApi();
     });
   }
 }

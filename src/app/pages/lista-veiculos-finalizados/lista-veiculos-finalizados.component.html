@@ -7,31 +7,26 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">ID</th>
         <th scope="col">Placa</th>
         <th scope="col">Entrada</th>
         <th scope="col">Saída</th>
         <th scope="col">Cliente</th>
 
-        <th>
-          <!-- <div>
-                <a [routerLink]="['/pessoa/cadastro']" class="btn btn-success"
-                  >Adicionar</a
-                >
-              </div> -->
-        </th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let c of listafinalizados">
-        <td>{{ c.id }}</td>
         <td>{{ c.placa }}</td>
         <td>{{ c.horaEntrada | dateTimeFormat }}</td>
         <td>{{ c.horaSaida | dateTimeFormat }}</td>
         <td>{{ c.pessoa }}</td>
+        <td></td>
 
         <td>
-          <a id="excluir" class="btn btn-danger">excluir</a>
+          <a class="btn btn-danger" (click)="this.confirmarExcluir(c.id)"
+            >Excluir</a
+          >
         </td>
       </tr>
     </tbody>
