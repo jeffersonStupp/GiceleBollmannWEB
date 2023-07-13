@@ -90,6 +90,9 @@ export class CadastroComponent implements OnInit {
       } else {
         this.alertService.showToastrError('erro ao cadastrar');
       }
+    }, exception => {
+      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+      this.alertService.showToastrError('Erro na requisição', mensagemErro);
     });
   }
   public chamarApiAtualizar(Pessoa: Pessoa) {
@@ -100,6 +103,9 @@ export class CadastroComponent implements OnInit {
       } else {
         this.alertService.showToastrError('erro ao atualizar');
       }
+    }, exception => {
+      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+      this.alertService.showToastrError('Erro na requisição', mensagemErro);
     });
   }
   public chamarApiParaObterPessoaPorId(id: number): void {
@@ -107,6 +113,9 @@ export class CadastroComponent implements OnInit {
       if (resposta != null) {
         this.formulario.patchValue(resposta);
       }
+    }, exception => {
+      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+      this.alertService.showToastrError('Erro na requisição', mensagemErro);
     });
   }
 

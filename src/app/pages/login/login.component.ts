@@ -72,16 +72,10 @@ export class LoginComponent implements OnInit, OnDestroy {
         } else {
           this.alertService.showToastrError('Erro ao efetuar login');
         }
-      },
-      (exception) => {
-        let mensagemErro =
-          typeof exception?.error == 'string' ? exception?.error : '';
-        this.alertService.showToastrError(
-          'Erro ao conectar com o servidor',
-          mensagemErro
-        );
-      }
-    );
+      }, exception => {
+        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+        this.alertService.showToastrError('Erro na requisição', mensagemErro);
+      });
   }
 
   private redirecionarParaMenuPrincipal(): void {

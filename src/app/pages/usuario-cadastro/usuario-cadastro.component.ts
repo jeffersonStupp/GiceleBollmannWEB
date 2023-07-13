@@ -84,16 +84,10 @@ export class UsuarioCadastroComponent implements OnInit {
         } else {
           this.alertService.showToastrError('Erro ao cadastrar usuário');
         }
-      },
-      (exception) => {
-        let mensagemErro =
-          exception?.error instanceof String ? exception?.error : '';
-        this.alertService.showToastrError(
-          'Erro ao conectar com o servidor',
-          mensagemErro
-        );
-      }
-    );
+      }, exception => {
+        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+        this.alertService.showToastrError('Erro na requisição', mensagemErro);
+      });
   }
 
   public chamarApiParaAtualizar(usuario: Usuario): void {
@@ -105,16 +99,10 @@ export class UsuarioCadastroComponent implements OnInit {
         } else {
           this.alertService.showToastrError('Erro ao atualizar usuário');
         }
-      },
-      (exception) => {
-        let mensagemErro =
-          exception?.error instanceof String ? exception?.error : '';
-        this.alertService.showToastrError(
-          'Erro ao conectar com o servidor',
-          mensagemErro
-        );
-      }
-    );
+      }, exception => {
+        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+        this.alertService.showToastrError('Erro na requisição', mensagemErro);
+      });
   }
 
   public chamarApiParaObterUsuarioPorId(id: number): void {
@@ -123,15 +111,9 @@ export class UsuarioCadastroComponent implements OnInit {
         if (resposta != null) {
           this.formulario.patchValue(resposta);
         }
-      },
-      (exception) => {
-        let mensagemErro =
-          exception?.error instanceof String ? exception?.error : '';
-        this.alertService.showToastrError(
-          'Erro ao conectar com o servidor',
-          mensagemErro
-        );
-      }
-    );
+      }, exception => {
+        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+        this.alertService.showToastrError('Erro na requisição', mensagemErro);
+      });
   }
 }

@@ -26,6 +26,9 @@ export class PessoListagemComponent implements OnInit {
       } else {
         this.alertService.showToastrError('Erro na API');
       }
+    }, exception => {
+      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+      this.alertService.showToastrError('Erro na requisição', mensagemErro);
     });
   }
   public confirmarExcluir(id: number) {
@@ -50,6 +53,9 @@ export class PessoListagemComponent implements OnInit {
     this.pessoaService.excluir(id).subscribe((resposta) => {
       this.alertService.showToastrSuccess('A pessoa foi excluida');
       this.obterPessoasApi();
+    }, exception => {
+      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+      this.alertService.showToastrError('Erro na requisição', mensagemErro);
     });
   }
 }

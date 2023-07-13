@@ -41,16 +41,10 @@ export class UsuarioListagemComponent implements OnInit {
             'Erro na requisição com o servidor'
           );
         }
-      },
-      (exception) => {
-        let mensagemErro =
-          exception?.error instanceof String ? exception?.error : '';
-        this.alertService.showToastrError(
-          'Erro ao conectar com o servidor',
-          mensagemErro
-        );
-      }
-    );
+      }, exception => {
+        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+        this.alertService.showToastrError('Erro na requisição', mensagemErro);
+      });
   }
 
   public alterarStatus(usuario: Usuario): void {
@@ -71,15 +65,9 @@ export class UsuarioListagemComponent implements OnInit {
             'Erro na requisição com o servidor'
           );
         }
-      },
-      (exception) => {
-        let mensagemErro =
-          exception?.error instanceof String ? exception?.error : '';
-        this.alertService.showToastrError(
-          'Erro ao conectar com o servidor',
-          mensagemErro
-        );
-      }
-    );
+      }, exception => {
+        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+        this.alertService.showToastrError('Erro na requisição', mensagemErro);
+      });
   }
 }

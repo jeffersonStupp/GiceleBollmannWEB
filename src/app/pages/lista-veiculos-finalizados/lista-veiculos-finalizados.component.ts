@@ -25,6 +25,9 @@ export class ListaVeiculosFinalizadosComponent implements OnInit {
     if (this.recarregarItensTabela != null) {
       this.recarregarItensTabela.subscribe((resposta) => {
         this.obterVeiculosFinalizadosDaApi();
+      }, exception => {
+        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+        this.alertService.showToastrError('Erro na requisição', mensagemErro);
       });
     }
   }
@@ -35,6 +38,9 @@ export class ListaVeiculosFinalizadosComponent implements OnInit {
       } else {
         this.alertService.showToastrError('Erro na API');
       }
+    }, exception => {
+      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+      this.alertService.showToastrError('Erro na requisição', mensagemErro);
     });
   }
   public confirmarExcluir(id: number) {
@@ -58,6 +64,9 @@ export class ListaVeiculosFinalizadosComponent implements OnInit {
     this.veiculoService.excluir(id).subscribe((resposta) => {
       this.alertService.showToastrSuccess('Registro excluido');
       this.obterVeiculosFinalizadosDaApi();
+    }, exception => {
+      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+      this.alertService.showToastrError('Erro na requisição', mensagemErro);
     });
   }
 }
