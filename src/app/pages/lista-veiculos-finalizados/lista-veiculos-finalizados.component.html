@@ -11,6 +11,7 @@
         <th scope="col">Entrada</th>
         <th scope="col">Saída</th>
         <th scope="col">Cliente</th>
+        <th></th>
 
         <th></th>
       </tr>
@@ -21,11 +22,11 @@
         <td>{{ c.horaEntrada | dateTimeFormat }}</td>
         <td>{{ c.horaSaida | dateTimeFormat }}</td>
         <td>{{ c.pessoa }}</td>
-        <td></td>
+        
 
         <td>
           <a class="btn btn-danger" (click)="this.confirmarExcluir(c.id)"
-            >Excluir</a
+          >Excluir</a
           >
         </td>
       </tr>

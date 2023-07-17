@@ -7,7 +7,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">ID</th>
+
         <th scope="col">Nome</th>
         <th scope="col">Data de Nascimento</th>
         <th scope="col">Cpf</th>
@@ -25,7 +25,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let c of listaPessoas">
-        <td>{{ c.id }}</td>
+        
         <td>{{ c.nome }}</td>
         <td>{{ c.dataNascimento | dateFormat }}</td>
         <td>{{ c.cpf | cpf }}</td>

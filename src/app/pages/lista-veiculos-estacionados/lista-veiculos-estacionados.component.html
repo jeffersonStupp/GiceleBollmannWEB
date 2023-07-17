@@ -7,6 +7,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th></th>
         <th scope="col">Placa</th>
         <th scope="col">Entrada</th>
         <th scope="col">Cliente</th>
@@ -14,32 +15,27 @@
 
         <th>
           <div style="display: flex; align-items: center">
-
-              <input
-                #placaInput
-                type="text"
-                class="form-control"
-                style="flex: 1"
-                placeholder="Insira a placa"
-                mask="SSS-0A00"
-              />
-              <button
-                class="btn btn-success"
-                (click)="this.confirmarEntrada()"
-              >
-                Entrada
-              </button>
-
+            <input
+              #placaInput
+              type="text"
+              class="form-control"
+              style="flex: 1"
+              placeholder="Insira a placa"
+              mask="SSS-0A00"
+            />
+            <button class="btn btn-success" (click)="this.confirmarEntrada()">
+              Entrada
+            </button>
           </div>
         </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let c of listaestacionados">
+        <td></td>
         <td>{{ c.placa }}</td>
         <td>{{ c.horaEntrada | dateTimeFormat }}</td>
         <td>{{ c.pessoa }}</td>
-        <td></td>
         <td></td>
         <td>
           <a class="btn btn-info" (click)="this.confirmarSaida(c)">Saida</a>

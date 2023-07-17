@@ -10,7 +10,14 @@ export class VeiculosService {
   constructor(public httpClient: HttpClient) {}
 
   public entrada(placa: string) {
-    return this.httpClient.post<Veiculo>(this.urlbase + 'entrada', placa);
+    const requisitarEntrada = {
+      placa: placa,
+    };
+
+    return this.httpClient.post<Veiculo>(
+      this.urlbase + 'entrada',
+      requisitarEntrada
+    );
   }
   public saida(veiculo: Veiculo) {
     return this.httpClient.put<Veiculo>(this.urlbase + 'saida', veiculo);

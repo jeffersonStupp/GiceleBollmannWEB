@@ -23,25 +23,33 @@ export class ListaVeiculosFinalizadosComponent implements OnInit {
     this.obterVeiculosFinalizadosDaApi();
 
     if (this.recarregarItensTabela != null) {
-      this.recarregarItensTabela.subscribe((resposta) => {
-        this.obterVeiculosFinalizadosDaApi();
-      }, exception => {
-        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
-        this.alertService.showToastrError('Erro na requisição', mensagemErro);
-      });
+      this.recarregarItensTabela.subscribe(
+        (resposta) => {
+          this.obterVeiculosFinalizadosDaApi();
+        },
+        (exception) => {
+          let mensagemErro =
+            typeof exception?.error == 'string' ? exception?.error : '';
+          this.alertService.showToastrError('Erro na requisição', mensagemErro);
+        }
+      );
     }
   }
   public obterVeiculosFinalizadosDaApi() {
-    this.veiculoService.obterTodosQueJaSairam().subscribe((resposta) => {
-      if (resposta != null) {
-        this.listafinalizados = resposta;
-      } else {
-        this.alertService.showToastrError('Erro na API');
+    this.veiculoService.obterTodosQueJaSairam().subscribe(
+      (resposta) => {
+        if (resposta != null) {
+          this.listafinalizados = resposta;
+        } else {
+          this.alertService.showToastrError('Erro na API');
+        }
+      },
+      (exception) => {
+        let mensagemErro =
+          typeof exception?.error == 'string' ? exception?.error : '';
+        this.alertService.showToastrError('Erro na requisição', mensagemErro);
       }
-    }, exception => {
-      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
-      this.alertService.showToastrError('Erro na requisição', mensagemErro);
-    });
+    );
   }
   public confirmarExcluir(id: number) {
     this.alertService.alertConfirm({
@@ -61,12 +69,16 @@ export class ListaVeiculosFinalizadosComponent implements OnInit {
     });
   }
   private chamarApiParaExcluir(id: number) {
-    this.veiculoService.excluir(id).subscribe((resposta) => {
-      this.alertService.showToastrSuccess('Registro excluido');
-      this.obterVeiculosFinalizadosDaApi();
-    }, exception => {
-      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
-      this.alertService.showToastrError('Erro na requisição', mensagemErro);
-    });
+    this.veiculoService.excluir(id).subscribe(
+      (resposta) => {
+        this.alertService.showToastrSuccess('Registro excluido');
+        this.obterVeiculosFinalizadosDaApi();
+      },
+      (exception) => {
+        let mensagemErro =
+          typeof exception?.error == 'string' ? exception?.error : '';
+        this.alertService.showToastrError('Erro na requisição', mensagemErro);
+      }
+    );
   }
 }

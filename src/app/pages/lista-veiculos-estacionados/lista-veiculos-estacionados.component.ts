@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import Pessoa from 'src/app/models/pessoa.model';
@@ -12,7 +12,6 @@ import { VeiculosService } from 'src/app/services/veiculos.service';
   styleUrls: ['./lista-veiculos-estacionados.component.css'],
 })
 export class ListaVeiculosEstacionadosComponent implements OnInit {
-
   @ViewChild('placaInput', { static: false }) placaInput: ElementRef;
 
   public formulario: FormGroup;
@@ -32,16 +31,20 @@ export class ListaVeiculosEstacionadosComponent implements OnInit {
   }
 
   public obterVeiculosEstavionadosDaApi() {
-    this.veiculoService.obterTodosQueNaoSairam().subscribe((resposta) => {
-      if (resposta != null) {
-        this.listaestacionados = resposta;
-      } else {
-        this.alertService.showToastrError('Erro na API');
+    this.veiculoService.obterTodosQueNaoSairam().subscribe(
+      (resposta) => {
+        if (resposta != null) {
+          this.listaestacionados = resposta;
+        } else {
+          this.alertService.showToastrError('Erro na API');
+        }
+      },
+      (exception) => {
+        let mensagemErro =
+          typeof exception?.error == 'string' ? exception?.error : '';
+        this.alertService.showToastrError('Erro na requisição', mensagemErro);
       }
-    }, exception => {
-      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
-      this.alertService.showToastrError('Erro na requisição', mensagemErro);
-    });
+    );
   }
 
   public confirmarSaida(veiculo: Veiculo) {
@@ -63,22 +66,26 @@ export class ListaVeiculosEstacionadosComponent implements OnInit {
   }
 
   private chamarApiParaSair(veiculo: Veiculo) {
-    this.veiculoService.saida(veiculo).subscribe((resposta) => {
-      this.alertService.showToastrSuccess('Saída efetuada');
-      this.obterVeiculosEstavionadosDaApi();
-      this.recarregarItensTabela.next({});
-    }, exception => {
-      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
-      this.alertService.showToastrError('Erro na requisição', mensagemErro);
-    });
+    this.veiculoService.saida(veiculo).subscribe(
+      (resposta) => {
+        this.alertService.showToastrSuccess('Saída efetuada');
+        this.obterVeiculosEstavionadosDaApi();
+        this.recarregarItensTabela.next({});
+      },
+      (exception) => {
+        let mensagemErro =
+          typeof exception?.error == 'string' ? exception?.error : '';
+        this.alertService.showToastrError('Erro na requisição', mensagemErro);
+      }
+    );
   }
 
   public confirmarEntrada() {
     const placa: string = this.placaInput.nativeElement.value;
 
-    if(placa.length < 8) {
+    if (placa.length < 8) {
       this.alertService.showToastrError('Insira uma placa válida');
-      return
+      return;
     }
 
     let veiculo: Veiculo = new Veiculo();
@@ -93,6 +100,7 @@ export class ListaVeiculosEstacionadosComponent implements OnInit {
       cancelButtonColor: 'red',
       fn: () => {
         this.chamarApiParaEntrada(placa);
+        this.placaInput.nativeElement.value = ' ';
       },
       fnCancel: () => {
         this.alertService.showToastrInfo('Operação cancelada!');
@@ -101,15 +109,18 @@ export class ListaVeiculosEstacionadosComponent implements OnInit {
   }
 
   private chamarApiParaEntrada(placa: string) {
-    alert(placa); //TODO remover depois
-    this.veiculoService.entrada(placa).subscribe((resposta) => {
-      this.alertService.showToastrSuccess('Entrada efetuada');
-      this.obterVeiculosEstavionadosDaApi();
-      this.recarregarItensTabela.next({});
-    }, exception => {
-      let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
-      this.alertService.showToastrError('Erro na requisição', mensagemErro);
-    });
-  }
+    this.veiculoService.entrada(placa).subscribe(
+      (resposta) => {
+        this.alertService.showToastrSuccess('Entrada efetuada');
+        this.obterVeiculosEstavionadosDaApi();
 
+        this.recarregarItensTabela.next({});
+      },
+      (exception) => {
+        let mensagemErro =
+          typeof exception?.error == 'string' ? exception?.error : '';
+        this.alertService.showToastrError('Erro na requisição', mensagemErro);
+      }
+    );
+  }
 }
