@@ -22,13 +22,14 @@
         <td>{{ c.horaEntrada | dateTimeFormat }}</td>
         <td>{{ c.horaSaida | dateTimeFormat }}</td>
         <td>{{ c.pessoa }}</td>
-        
+
 
         <td>
           <a class="btn btn-danger" (click)="this.confirmarExcluir(c.id)"
           >Excluir</a
           >
         </td>
+        <td></td>
       </tr>
     </tbody>
   </table>
