@@ -1,0 +1,30 @@
+*{
+  font-size: small;
+  text-align: center;
+
+}
+
+
+
+svg{
+
+margin-left: 10px;
+margin-right: 10px;
+
+}
+.footer-custom {
+  background-color: steelblue;
+ margin-bottom: 0px;
+  box-shadow: -1px -3px 6px   rgb(73, 75, 75);
+
+}
+footer {
+  position:relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  padding: 10px;
+
+}
+

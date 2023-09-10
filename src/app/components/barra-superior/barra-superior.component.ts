@@ -11,7 +11,7 @@ import { NgIf } from '@angular/common';
 })
 export class BarraSuperiorComponent implements OnInit {
   public tipoPerfilEhAdmin: boolean = null;
-  public nomeusuario;
+  public nome;
   public saudacao;
 
   constructor(
@@ -20,8 +20,11 @@ export class BarraSuperiorComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+
+      document.title = 'Gicele Bollmann';
+
     this.tipoPerfilEhAdmin = this.autenticacaoService.tipoPerfilEhAdmin();
-    this.nomeusuario = this.autenticacaoService.obterNomeUsuario();
+    this.nome = this.autenticacaoService.obterNomeUsuario();
 
     const dataAtual = new Date();
     const horaAtual = dataAtual.getHours();

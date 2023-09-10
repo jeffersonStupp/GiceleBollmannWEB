@@ -71,7 +71,7 @@ export class AutenticacaoService {
   public iniciarSessao(
     token: string,
     dataExpiracao: string,
-    nomeUsuario: string,
+    nome: string,
     email: string,
     tipoPerfil: string,
     idUsuario: number
@@ -81,7 +81,7 @@ export class AutenticacaoService {
       this.chaveLocalStorageDataExpiracaoToken,
       dataExpiracao
     );
-    localStorage.setItem(this.chaveLocalStorageNomeUsuario, nomeUsuario);
+    localStorage.setItem(this.chaveLocalStorageNomeUsuario, nome);
     localStorage.setItem(this.chaveLocalStorageEmail, email);
     localStorage.setItem(this.chaveLocalStorageTipoPerfil, tipoPerfil);
     localStorage.setItem(this.chaveLocalStorageIdUsuario, idUsuario.toString());

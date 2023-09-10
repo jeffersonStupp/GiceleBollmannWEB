@@ -64,11 +64,12 @@ export class UsuarioCadastroComponent implements OnInit {
   private inicializarConfigForm(): void {
     this.formulario = this.formBuilder.group({
       id: [0],
-      nomeUsuario: [null, [Validators.required, Validators.maxLength(150)]],
+      nome: [null, [Validators.required, Validators.maxLength(150)]],
       email: [
         null,
         [Validators.required, Validators.maxLength(150), Validators.email],
       ],
+telefone:[null,[Validators.minLength(11),Validators.maxLength(15)]],
       senha: [null, [Validators.required, Validators.maxLength(150)]],
       ativo: [null, [Validators.required]],
       tipo: [null, [Validators.required, Validators.maxLength(30)]],

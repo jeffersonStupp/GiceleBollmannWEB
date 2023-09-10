@@ -1,11 +1,10 @@
-.fundo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-image: url('src\assets\fundo.png');
-  background-size: cover;
 
+.container{
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0px;
 }
 
 

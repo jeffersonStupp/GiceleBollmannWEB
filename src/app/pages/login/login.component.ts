@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.autenticacaoService.iniciarSessao(
             resposta.token,
             resposta.dataExpiracao,
-            resposta.nomeUsuario,
+            resposta.nome,
             resposta.email,
             resposta.tipoPerfil,
             resposta.idUsuario

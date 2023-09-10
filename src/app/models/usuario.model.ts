@@ -1,7 +1,8 @@
 export default class Usuario {
   public id: number;
-  public nomeUsuario: string;
+  public nome: string;
   public email: string;
+  public telefone:string;
   public senha: string;
   public ativo: boolean;
   public tipo: string;

@@ -14,14 +14,11 @@ import {
 import { MenuPrincipalComponent } from './pages/menu-principal/menu-principal.component';
 
 import { BarraSuperiorComponent } from './components/barra-superior/barra-superior.component';
-import { PessoListagemComponent } from './pages/pesso-listagem/pesso-listagem.component';
-import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { ValidatorComponent } from './components/validator/validator.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskModule } from 'ngx-mask';
 import { CpfPipe } from './pipes/cpf.pipe';
 import { TelefonePipe } from './pipes/telefone.pipe';
-import { PessoListagemEnderecoComponent } from './pages/pesso-listagem-endereco/pesso-listagem-endereco.component';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 import { LoginComponent } from './pages/login/login.component';
 import { UsuarioListagemComponent } from './pages/usuario-listagem/usuario-listagem.component';
@@ -29,28 +26,25 @@ import { UsuarioCadastroComponent } from './pages/usuario-cadastro/usuario-cadas
 import { UsuarioLogadoGuard } from './guards/usuario-logado.guards';
 import { AuthInterceptor } from './interceptors/requisicao.interceptor';
 
-import { ListaVeiculosEstacionadosComponent } from './pages/lista-veiculos-estacionados/lista-veiculos-estacionados.component';
-import { ListaVeiculosFinalizadosComponent } from './pages/lista-veiculos-finalizados/lista-veiculos-finalizados.component';
 import { DateTimeFormatPipe } from './pipes/date-time-format.pipe';
+import { BarraInferiorComponent } from './components/barra-inferior/barra-inferior.component';
+import { CarrocelComponent } from './components/carrocel/carrocel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuPrincipalComponent,
     BarraSuperiorComponent,
-    PessoListagemComponent,
-    CadastroComponent,
     ValidatorComponent,
     CpfPipe,
     TelefonePipe,
-    PessoListagemEnderecoComponent,
     DateFormatPipe,
     LoginComponent,
     UsuarioListagemComponent,
     UsuarioCadastroComponent,
-    ListaVeiculosEstacionadosComponent,
-    ListaVeiculosFinalizadosComponent,
     DateTimeFormatPipe,
+    BarraInferiorComponent,
+    CarrocelComponent,
   ],
   imports: [
     BrowserModule,

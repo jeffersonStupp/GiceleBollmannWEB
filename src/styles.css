@@ -4,13 +4,20 @@
  *{font-family:'Cambria, Cochin, Georgia, Times, 'Times New Roman', serif'}
 
  .containercustom{
+  
   width: 90vw;
   margin: auto;
+  margin-bottom: 0px;
 }
 .toast-top-left{
   margin-left: 90px;
 
 }
+body{
+  margin:0px;
+  padding: 0px;
+}
+
 
 
 
