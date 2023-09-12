@@ -13,6 +13,7 @@ export class BarraSuperiorComponent implements OnInit {
   public tipoPerfilEhAdmin: boolean = null;
   public nome;
   public saudacao;
+  
 
   constructor(
     public router: Router,
@@ -20,11 +21,11 @@ export class BarraSuperiorComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-
-      document.title = 'Gicele Bollmann';
+    document.title = 'Gicele Bollmann';
 
     this.tipoPerfilEhAdmin = this.autenticacaoService.tipoPerfilEhAdmin();
     this.nome = this.autenticacaoService.obterNomeUsuario();
+
 
     const dataAtual = new Date();
     const horaAtual = dataAtual.getHours();

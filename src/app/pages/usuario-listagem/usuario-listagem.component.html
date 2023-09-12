@@ -5,7 +5,7 @@
     <thead>
       <tr>
         <th>Id</th>
-        <th>Nome usuário</th>
+        <th>Nome</th>
         <th>E-mail</th>
         <th>Ativo</th>
         <th>Tipo</th>
@@ -25,7 +25,7 @@
     <tbody>
       <tr *ngFor="let usuario of this.listaUsuarios">
         <td>{{ usuario.id }}</td>
-        <td>{{ usuario.nomeUsuario }}</td>
+        <td>{{ usuario.nome }}</td>
         <td>{{ usuario.email }}</td>
         <td>{{ usuario.ativo ? "Sim" : "Não" }}</td>
         <td>
