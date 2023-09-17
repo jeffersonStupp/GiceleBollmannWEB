@@ -7,6 +7,7 @@
         <th>Id</th>
         <th>Nome</th>
         <th>E-mail</th>
+        <th>UserName</th>
         <th>Ativo</th>
         <th>Tipo</th>
 
@@ -27,6 +28,7 @@
         <td>{{ usuario.id }}</td>
         <td>{{ usuario.nome }}</td>
         <td>{{ usuario.email }}</td>
+        <td>{{ usuario.userName }}</td>
         <td>{{ usuario.ativo ? "Sim" : "Não" }}</td>
         <td>
           {{ usuario.tipo == "administrador" ? "Administrador" : "Usuário" }}

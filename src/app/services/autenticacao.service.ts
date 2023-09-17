@@ -10,6 +10,7 @@ export class AutenticacaoService {
   private chaveLocalStorageDataExpiracaoToken: string =
     'sessao-token-data-expiracao';
   private chaveLocalStorageNomeUsuario: string = 'sessao-nome-usuario';
+  private chaveLocalStorageUserName:string='sessao-username-usuario';
   private chaveLocalStorageEmail: string = 'sessao-email-usuario';
   private chaveLocalStorageTipoPerfil: string = 'sessao-tipo-perfil-usuario';
   private chaveLocalStorageIdUsuario: string = 'sessao-tipo-id-usuario';
@@ -73,6 +74,7 @@ export class AutenticacaoService {
     dataExpiracao: string,
     nome: string,
     email: string,
+    username:string,
     tipoPerfil: string,
     idUsuario: number
   ): void {
@@ -83,6 +85,8 @@ export class AutenticacaoService {
     );
     localStorage.setItem(this.chaveLocalStorageNomeUsuario, nome);
     localStorage.setItem(this.chaveLocalStorageEmail, email);
+    localStorage.setItem(this.chaveLocalStorageUserName, username);
+
     localStorage.setItem(this.chaveLocalStorageTipoPerfil, tipoPerfil);
     localStorage.setItem(this.chaveLocalStorageIdUsuario, idUsuario.toString());
   }
@@ -92,6 +96,7 @@ export class AutenticacaoService {
     localStorage.removeItem(this.chaveLocalStorageDataExpiracaoToken);
     localStorage.removeItem(this.chaveLocalStorageNomeUsuario);
     localStorage.removeItem(this.chaveLocalStorageEmail);
+    localStorage.removeItem(this.chaveLocalStorageUserName);
     localStorage.removeItem(this.chaveLocalStorageTipoPerfil);
     localStorage.removeItem(this.chaveLocalStorageIdUsuario);
   }

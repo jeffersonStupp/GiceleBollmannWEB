@@ -7,3 +7,35 @@
 
 }
 
+.card-body{
+  background-color: whitesmoke;
+  box-shadow: -1px 3px 8px   rgb(73, 75, 75);
+}
+.img{
+  text-align: center;
+}
+.fundo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+background-color: steelblue;
+  background-size: cover;
+
+}
+#titulo{
+  font-family: "Dancing Script";
+  font-size: 40px;
+  font-weight: bold;
+  margin:auto;
+  margin-bottom: 15px;
+
+}
+.btn {
+  background-color: steelblue;
+}
+.link{
+  text-align: center;
+  margin-top: 5px;
+}
+

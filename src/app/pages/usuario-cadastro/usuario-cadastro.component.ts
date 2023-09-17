@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Usuario from 'src/app/models/usuario.model';
 import { AlertService } from 'src/app/services/alert.service';
-import { AutenticacaoService } from 'src/app/services/autenticacao.service';
+
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -19,28 +19,18 @@ export class UsuarioCadastroComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public router: Router,
-    public activatedRoute: ActivatedRoute,
-    public autenticacaoService: AutenticacaoService,
+
     public usuarioService: UsuarioService,
     public alertService: AlertService
   ) {}
 
   public ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.params['id'];
+    document.title = 'Cadastro de usuário';
 
-    if (
-      !this.autenticacaoService.tipoPerfilEhAdmin() &&
-      (this.id == null || this.id != this.autenticacaoService.obterIdUsuario())
-    ) {
-      this.router.navigate(['/principal']);
-    }
 
-    if (this.id == null) {
-      document.title = 'Cadastro de usuário';
-    } else {
-      document.title = 'Edição de usuário';
-      this.chamarApiParaObterUsuarioPorId(this.id);
-    }
+
+
+
 
     this.inicializarConfigForm();
   }
@@ -54,11 +44,8 @@ export class UsuarioCadastroComponent implements OnInit {
 
     let usuario: Usuario = new Usuario(this.formulario.getRawValue());
 
-    if (this.id == null) {
-      this.chamarApiParaAdicionar(usuario);
-    } else {
-      this.chamarApiParaAtualizar(usuario);
-    }
+    this.chamarApiParaAdicionar(usuario);
+
   }
 
   private inicializarConfigForm(): void {
@@ -69,10 +56,12 @@ export class UsuarioCadastroComponent implements OnInit {
         null,
         [Validators.required, Validators.maxLength(150), Validators.email],
       ],
+      username:[null,[Validators.required]],
 telefone:[null,[Validators.minLength(11),Validators.maxLength(15)]],
       senha: [null, [Validators.required, Validators.maxLength(150)]],
-      ativo: [null, [Validators.required]],
-      tipo: [null, [Validators.required, Validators.maxLength(30)]],
+      conf: [null, [Validators.required, Validators.maxLength(150)]],
+      ativo: [true],
+      tipo: ["usuario"],
     });
   }
 

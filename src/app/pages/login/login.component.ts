@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             resposta.token,
             resposta.dataExpiracao,
             resposta.nome,
+            resposta.username,
             resposta.email,
             resposta.tipoPerfil,
             resposta.idUsuario

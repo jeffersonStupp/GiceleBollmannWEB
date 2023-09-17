@@ -20,7 +20,12 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/usuario/listagem']" *ngIf="tipoPerfilEhAdmin">Listagem</a>
+          <a
+            class="nav-link"
+            [routerLink]="['/usuario/listagem']"
+            *ngIf="tipoPerfilEhAdmin"
+            >Listagem</a
+          >
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/usuario/listagem-endereco']"
@@ -57,7 +62,7 @@
           /></svg
       ></a>
       <a
-        [routerLink]="[]"
+        [routerLink]="['edicao']"
         queryParamsHandling="preserve"
         (click)="this.editarPerfilUsuario()"
         ><svg

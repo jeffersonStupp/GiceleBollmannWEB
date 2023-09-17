@@ -13,7 +13,7 @@ export class BarraSuperiorComponent implements OnInit {
   public tipoPerfilEhAdmin: boolean = null;
   public nome;
   public saudacao;
-  
+
 
   constructor(
     public router: Router,
