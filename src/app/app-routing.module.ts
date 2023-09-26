@@ -6,7 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { UsuarioListagemComponent } from './pages/usuario-listagem/usuario-listagem.component';
 import { UsuarioCadastroComponent } from './pages/usuario-cadastro/usuario-cadastro.component';
 import { UsuarioLogadoGuard } from './guards/usuario-logado.guards';
-
+import { EdicaoComponent } from './pages/edicao/edicao.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/principal', pathMatch: 'full' },
@@ -17,17 +17,16 @@ const routes: Routes = [
     canActivate: [UsuarioLogadoGuard],
     component: BarraSuperiorComponent,
     children: [
-      { path: 'principal', component: MenuPrincipalComponent },
+       { path: 'principal', component: MenuPrincipalComponent },
       {
         path: 'usuario',
         children: [
           { path: 'listagem', component: UsuarioListagemComponent },
-          { path: 'cadastro', component: UsuarioCadastroComponent },
-          { path: 'cadastro/:id', component: UsuarioCadastroComponent },
+                 //{ path: 'cadastro', component: UsuarioCadastroComponent },
+                { path: 'edicao/:id', component: EdicaoComponent },
+         // { path: 'edicao', component: EdicaoComponent },
         ],
       },
-
-
     ],
   },
 

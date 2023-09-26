@@ -29,3 +29,10 @@
     margin-top: 50px;
     margin-bottom: 50px;
   }
+  svg{
+    cursor: pointer;
+  }
+  svg:hover{
+    color:red;
+   
+  }

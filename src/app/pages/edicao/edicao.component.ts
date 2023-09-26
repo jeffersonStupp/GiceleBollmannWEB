@@ -7,11 +7,11 @@ import { AlertService } from 'src/app/services/alert.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  selector: 'app-usuario-cadastro',
-  templateUrl: './usuario-cadastro.component.html',
-  styleUrls: ['./usuario-cadastro.component.css'],
+  selector: 'app-edicao',
+  templateUrl: './edicao.component.html',
+  styleUrls: ['./edicao.component.css'],
 })
-export class UsuarioCadastroComponent implements OnInit {
+export class EdicaoComponent implements OnInit {
   public formulario: FormGroup;
   public formSubmetido: boolean = false;
   public id: number = null;
@@ -19,36 +19,34 @@ export class UsuarioCadastroComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public router: Router,
-
+    public ActivatedRoute: ActivatedRoute,
     public usuarioService: UsuarioService,
     public alertService: AlertService
   ) {}
-
   public ngOnInit(): void {
-    document.title = 'Cadastro de usuário';
+    this.id = this.ActivatedRoute.snapshot.params['id'];
 
-
-
-
-
+    document.title = 'edicão';
+    this.chamarApiParaObterPorId(this.id);
 
     this.inicializarConfigForm();
   }
 
   public submeterForm(): void {
     this.formSubmetido = true;
+    // let jsonTexto = JSON.stringify(this.formulario.getRawValue());
+    //alert(jsonTexto);
 
-    if (this.formulario.invalid) {
-      return;
-    }
+    // if (this.formulario.invalid) {
+    //   return;
+    // }
 
     let usuario: Usuario = new Usuario(this.formulario.getRawValue());
 
-    this.chamarApiParaAdicionar(usuario);
-
+    this.chamarApiAtualizar(usuario);
   }
 
-  private inicializarConfigForm(): void {
+  public inicializarConfigForm(): void {
     this.formulario = this.formBuilder.group({
       id: [0],
       nome: [null, [Validators.required, Validators.maxLength(150)]],
@@ -56,7 +54,7 @@ export class UsuarioCadastroComponent implements OnInit {
         null,
         [Validators.required, Validators.maxLength(150), Validators.email],
       ],
-      username:[null,[Validators.required]],
+      userName:[null,[Validators.required]],
 telefone:[null,[Validators.minLength(11),Validators.maxLength(15)]],
       senha: [null, [Validators.required, Validators.maxLength(150)]],
       conf: [null, [Validators.required, Validators.maxLength(150)]],
@@ -65,47 +63,39 @@ telefone:[null,[Validators.minLength(11),Validators.maxLength(15)]],
     });
   }
 
-  public chamarApiParaAdicionar(usuario: Usuario): void {
-    this.usuarioService.adicionar(usuario).subscribe(
-      (resposta) => {
-        if (resposta != null) {
-          this.alertService.showToastrSuccess('Usuário cadastrado com sucesso');
-          this.router.navigate(['/usuario/listagem']);
-        } else {
-          this.alertService.showToastrError('Erro ao cadastrar usuário');
-        }
-      }, exception => {
-        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
-        this.alertService.showToastrError('Erro na requisição', mensagemErro);
-      });
-  }
-
-  public chamarApiParaAtualizar(usuario: Usuario): void {
-    this.usuarioService.atualizar(usuario).subscribe(
-      (resposta) => {
-        if (resposta != null) {
-          this.alertService.showToastrSuccess('Usuário atualizado com sucesso');
-          this.router.navigate(['/usuario/listagem']);
-        } else {
-          this.alertService.showToastrError('Erro ao atualizar usuário');
-        }
-      }, exception => {
-        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
-        this.alertService.showToastrError('Erro na requisição', mensagemErro);
-      });
-  }
-
-  public chamarApiParaObterUsuarioPorId(id: number): void {
+  public chamarApiParaObterPorId(id: number): void {
     this.usuarioService.obterPorId(id).subscribe(
       (resposta) => {
         if (resposta != null) {
           this.formulario.patchValue(resposta);
         }
-      }, exception => {
-        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
+      },
+      (exception) => {
+        let mensagemErro =
+          typeof exception?.error == 'string' ? exception?.error : '';
         this.alertService.showToastrError('Erro na requisição', mensagemErro);
-      });
+      }
+    );
   }
+  public chamarApiAtualizar(usuario: Usuario) {
+    this.usuarioService.atualizar(usuario).subscribe(
+      (resposta) => {
+
+        if (resposta != null) {
+          this.alertService.showToastrSuccess('usuário atualizado');
+          this.router.navigate(['/usuario/listagem']);
+        } else {
+          this.alertService.showToastrError('erro ao atualizar');
+        }
+      },
+      (exception) => {
+        let mensagemErro =
+          typeof exception?.error == 'string' ? exception?.error : '';
+        this.alertService.showToastrError('Erro na requisição', mensagemErro);
+      }
+    );
+  }
+
   public voltar(mensagem:string){
     this.alertService.showToastrInfo(mensagem);
   }

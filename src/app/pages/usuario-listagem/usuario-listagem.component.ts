@@ -46,6 +46,20 @@ export class UsuarioListagemComponent implements OnInit {
         this.alertService.showToastrError('Erro na requisição', mensagemErro);
       });
   }
+public chamarexcluirUsuario(id:number):void{
+  this.usuarioService.excluirUsuario(id).subscribe(
+    (resposta) => {
+if(resposta == null){
+  this.alertService.showToastrSuccess(
+    'Usuário excluido com sucesso');
+    this.obterUsuariosDaApi();
+}else{
+  this.alertService.showToastrError(
+    'Erro na requisição com o servidor'
+  );
+}
+    });
+}
 
   public alterarStatus(usuario: Usuario): void {
     this.usuarioService.alterarStatus(usuario.id).subscribe(
@@ -69,5 +83,22 @@ export class UsuarioListagemComponent implements OnInit {
         let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
         this.alertService.showToastrError('Erro na requisição', mensagemErro);
       });
+  }
+  public confirmarExcluir(id: number) {
+    this.alertService.alertConfirm({
+      title: 'Atenção',
+      text: 'Você deseja realmente excluir o registro?',
+      confirmButtonText: 'Sim',
+      confirmButtonColor: 'green',
+      showCancelButton: true,
+      cancelButtonText: 'Não',
+      cancelButtonColor: 'red',
+      fn: () => {
+        this.chamarexcluirUsuario(id);
+      },
+      fnCancel: () => {
+        this.alertService.showToastrInfo('Operação cancelada!');
+      },
+    });
   }
 }

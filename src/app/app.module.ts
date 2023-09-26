@@ -29,6 +29,8 @@ import { AuthInterceptor } from './interceptors/requisicao.interceptor';
 import { DateTimeFormatPipe } from './pipes/date-time-format.pipe';
 import { BarraInferiorComponent } from './components/barra-inferior/barra-inferior.component';
 import { CarrocelComponent } from './components/carrocel/carrocel.component';
+import { EdicaoComponent } from './pages/edicao/edicao.component';
+import { AlertService } from './services/alert.service';
 
 @NgModule({
   declarations: [
@@ -45,10 +47,13 @@ import { CarrocelComponent } from './components/carrocel/carrocel.component';
     DateTimeFormatPipe,
     BarraInferiorComponent,
     CarrocelComponent,
+    EdicaoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+   
+
     CommonModule,
     ReactiveFormsModule,
     FormsModule,

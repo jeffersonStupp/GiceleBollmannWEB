@@ -19,7 +19,7 @@ export class UsuarioService {
 
   public atualizar(usuario: Usuario) {
     return this.httpClient.put<Usuario>(
-      this.urlBase + 'usuario/atualizar',
+      this.urlBase + 'usuario/atualizar' ,
       usuario
     );
   }
@@ -39,5 +39,10 @@ export class UsuarioService {
 
   public obterTodos() {
     return this.httpClient.get<Usuario[]>(this.urlBase + 'usuario/obterTodos');
+  }
+  public excluirUsuario(id:number){
+    return this.httpClient.delete<any>(
+      this.urlBase + 'usuario/excluir/' + id
+    );
   }
 }

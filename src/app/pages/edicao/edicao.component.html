@@ -1,16 +1,10 @@
 <body class="fundo">
   <div class="container">
-    <div class="row justify-content-center mt-9">
+    <div class="row justify-content-center mt9">
       <div class="col-md-9">
-        <div class="card">
+
           <div class="card-body">
-            <div class="img">
-              <a
-                class="navbar-brand animate__animated animate__pulse animate__infinite"
-                id="titulo"
-                >Gicele Bollmann</a
-              >
-            </div>
+
 
             <form
               [formGroup]="this.formulario"
@@ -58,11 +52,11 @@
                     type="text"
                     class="form-control"
                     placeholder="Preencha um UserName"
-                    formControlName="username"
+                    formControlName="userName"
                   />
                   <app-validator
                     [formSubmitted]="this.formSubmetido"
-                    [errors]="this.formulario?.get('email')?.errors"
+                    [errors]="this.formulario?.get('userName')?.errors"
                   ></app-validator>
                 </div>
 
@@ -83,35 +77,18 @@
                   ></app-validator>
                 </div>
 
-                <div class="form-group col-sm-12 col-md-12 col-lg-6">
-                  <label class="form-control-label label-obrigatorio"
-                    >Senha</label
-                  >
-                  <input
-                    type="password"
-                    class="form-control"
-                    placeholder="Preencha uma senha"
-                    formControlName="senha"
-                  />
-                  <app-validator
-                    [formSubmitted]="this.formSubmetido"
-                    [errors]="this.formulario?.get('senha')?.errors"
-                  ></app-validator>
-                </div>
 
                 <div class="form-group col-sm-12 col-md-12 col-lg-6">
                   <label class="form-control-label label-obrigatorio"
-                    >Senha
-                  </label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    placeholder="Repita a senha"
-                    formControlName="conf"
-                  />
+                    >Tipo de usuário</label
+                  >
+                  <select class="form-control" id="tipo" formControlName="tipo">
+                    <option value="usuario">Usuário</option>
+                    <option value="administrador">Administrador</option>
+                  </select>
                   <app-validator
                     [formSubmitted]="this.formSubmetido"
-                    [errors]="this.formulario?.get('conf')?.errors"
+                    [errors]="this.formulario?.get('tipo')?.errors"
                   ></app-validator>
                 </div>
 
@@ -120,7 +97,7 @@
                     class="btn btn-secondary float-left"
                     [routerLink]="['login']"
                     queryParamsHandling="preserve"
-                    (click)="voltar('operação cancelada')"
+                    (click)="voltar('nada foi alterado')"
                     >Voltar</a
                   >
                   <button
@@ -137,5 +114,6 @@
         </div>
       </div>
     </div>
-  </div>
+
 </body>
+

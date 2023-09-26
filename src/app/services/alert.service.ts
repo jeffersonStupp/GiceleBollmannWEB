@@ -146,7 +146,7 @@ export class AlertService {
     options = options || {};
     let opt = {
       closeButton: options.closeButton || false,
-      timeOut: options.timeOut || 5000,
+      timeOut: options.timeOut || 2000,
       extendedTimeOut: options.extendedTimeOut || 1000,
       disableTimeOut: options.disableTimeOut || false,
       easing: options.disableTimeOut || 'ease-in',
@@ -155,8 +155,9 @@ export class AlertService {
       progressBar: options.progressBar || true,
       progressAnimation: options.progressAnimation || 'decreasing',
       toastClass: options.toastClass || 'ngx-toastr',
-      positionClass: options.positionClass || 'toast-top-left',
-      //positionClass: options.positionClass || 'toast-top-full-width',
+      //positionClass: options.positionClass || 'toast-top-left',
+      positionClass: options.positionClass || 'toast-top-full-width',
+
       titleClass: options.titleClass || 'toast-title',
       messageClass: options.messageClass || 'toast-message',
       tapToDismiss: options.tapToDismiss || true,
