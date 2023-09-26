@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 import { NgIf } from '@angular/common';
 
+
 @Component({
   selector: 'app-barra-superior',
   templateUrl: './barra-superior.component.html',

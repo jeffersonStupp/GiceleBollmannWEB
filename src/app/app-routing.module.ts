@@ -11,7 +11,7 @@ import { UsuarioLogadoGuard } from './guards/usuario-logado.guards';
 const routes: Routes = [
   { path: '', redirectTo: '/principal', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'cadastro/:id', component: UsuarioCadastroComponent },
+  { path: 'cadastro', component: UsuarioCadastroComponent },
   {
     path: '',
     canActivate: [UsuarioLogadoGuard],
@@ -27,7 +27,7 @@ const routes: Routes = [
         ],
       },
 
-      
+
     ],
   },
 
