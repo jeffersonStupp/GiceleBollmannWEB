@@ -1,0 +1,100 @@
+<body class="fundo">
+  <div class="container">
+    <div class="row justify-content-center mt-9">
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-body">
+            <div class="img">
+              <h2>CADASTRO DE PRODUTO</h2>
+              <hr class="border border-info border-2 opacity-50" />
+            </div>
+
+            <form
+              [formGroup]="formulario"
+              (ngSubmit)="submeterForm()"
+              novalidate
+              [ngClass]="{ submitted: formSubmetido }"
+            >
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label class="form-control-label">Título</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Preencha o título do produto"
+                    formControlName="titulo"
+                  />
+                  <app-validator
+                    [formSubmitted]="this.formSubmetido"
+                    [errors]="this.formulario?.get('titulo')?.errors"
+                  ></app-validator>
+                </div>
+
+                <div class="form-group col-sm-12">
+                  <label class="form-control-label label-obrigatorio"
+                    >Descrição</label
+                  >
+                  <textarea
+                    class="form-control"
+                    placeholder="Preencha a descrição do produto"
+                    formControlName="descricao"
+                    rows="3"
+                  ></textarea
+                  ><app-validator
+                    [formSubmitted]="this.formSubmetido"
+                    [errors]="this.formulario?.get('descricao')?.errors"
+                  ></app-validator>
+                </div>
+
+                <div class="form-group col-sm-12">
+                  <label class="form-control-label label-obrigatorio"
+                    >Imagem</label
+                  >
+                  <input
+                    type="file"
+                    class="form-control"
+                    formControlName="imagem"
+
+                  />
+                  <app-validator
+                    [formSubmitted]="this.formSubmetido"
+                    [errors]="this.formulario?.get('imagem')?.errors"
+                  ></app-validator>
+
+                </div>
+                <div class="form-group col-sm-4">
+                  <label class="form-control-label">Preço</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Preencha o preço do produto"
+                    formControlName="preco"
+                    mask="000,00"
+
+                  />
+                  <app-validator
+                    [formSubmitted]="this.formSubmetido"
+                    [errors]="this.formulario?.get('preco')?.errors"
+                  ></app-validator>
+                </div>
+
+                <div class="form-group col-sm-12 action-buttons">
+                  <a
+                    class="btn btn-secondary float-left"
+                    [routerLink]="['/usuario/dashboard']"
+                    queryParamsHandling="preserve"
+                    (click)="voltar('operação cancelada')"
+                    >Voltar</a
+                  >
+                  <button type="submit" class="btn btn-primary float-right">
+                    Salvar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

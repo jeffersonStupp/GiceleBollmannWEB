@@ -8,6 +8,9 @@ import { UsuarioCadastroComponent } from './pages/usuario-cadastro/usuario-cadas
 import { UsuarioLogadoGuard } from './guards/usuario-logado.guards';
 import { EdicaoComponent } from './pages/edicao/edicao.component';
 import { DashhomeComponent } from './pages/dashboard/dashhome/dashhome.component';
+import { CardProdutoComponent } from './components/card-produto/card-produto.component';
+import { ViewProdutoComponent } from './components/view-produto/view-produto.component';
+import { ProdutoCadastroComponent } from './pages/produto-cadastro/produto-cadastro.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/principal', pathMatch: 'full' },
@@ -20,16 +23,22 @@ const routes: Routes = [
     component: BarraSuperiorComponent,
     children: [
       { path: 'principal', component: MenuPrincipalComponent },
-          {
-        path: 'usuario',
+      { path: 'usuario',
         children: [
-
           { path: 'listagem', component: UsuarioListagemComponent },
           { path: 'edicao/:id', component: EdicaoComponent },
-          {path:'dashboard', component: DashhomeComponent},
-          //{ path: 'cadastro', component: UsuarioCadastroComponent },
+          { path: 'dashboard', component: DashhomeComponent },
+
+
+
+
         ],
       },
+      {path:'produto',children:[
+        { path: 'viewProduto', component: ViewProdutoComponent },
+        { path: 'catalogo', component: CardProdutoComponent },
+        {path:'cadastro', component:ProdutoCadastroComponent}
+      ]}
     ],
   },
 

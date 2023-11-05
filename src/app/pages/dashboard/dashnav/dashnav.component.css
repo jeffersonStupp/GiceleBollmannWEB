@@ -1,0 +1,55 @@
+
+div {
+  margin-left: none;
+  color: #fff;
+  width: 250px;
+  padding-left: 20px;
+  height: 100vh;
+  background-image: linear-gradient(30deg, white,steelblue, steelblue);
+  border-top-right-radius: 90px;
+
+  border-left: 0px;
+}
+
+/* Div header */
+div h2 {
+  padding: 40px 0 0 0;
+
+}
+
+/* Div links */
+div a {
+  font-size: 14px;
+  color: #fff;
+  display: flex;
+  padding: 12px;
+  padding-left: 30px;
+  text-decoration: none;
+  outline: none;
+  border-top-left-radius: 22px;
+  border-bottom-left-radius: 22px;
+
+}
+
+/* Div link on hover */
+div  a:hover {
+  color: steelblue;
+  background: #fff;
+  position: relative;
+  background-color: #fff;
+  border-top-left-radius: 22px;
+  border-bottom-left-radius: 22px;
+
+
+
+}
+hr {
+
+  background-color: white;
+  height: 1px;
+}
+.material-symbols-outlined{
+  margin-right: 10px;
+  
+}
+

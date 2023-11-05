@@ -8,10 +8,10 @@ import { AlertService } from './services/alert.service';
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    document.title = 'Central Park';
+    document.title = 'Gicele Bollmann';
   }
 
-  
+
 
 
 }

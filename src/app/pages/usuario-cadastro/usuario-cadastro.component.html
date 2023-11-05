@@ -1,3 +1,4 @@
+
 <body class="fundo">
   <div class="container">
     <div class="row justify-content-center mt-9">
@@ -5,131 +6,99 @@
         <div class="card">
           <div class="card-body">
             <div class="img">
-              <a
-                class="navbar-brand animate__animated animate__pulse animate__infinite"
-                id="titulo"
-                >Gicele Bollmann</a
-              >
+              <a class="navbar-brand animate__animated animate__pulse animate__infinite" id="titulo">Gicele Bollmann</a>
             </div>
 
-            <form
-              [formGroup]="this.formulario"
-              (ngSubmit)="this.submeterForm()"
-              novalidate
-              [ngClass]="{ submitted: this.formSubmetido }"
-            >
+            <form [formGroup]="formulario" (ngSubmit)="submeterForm()" novalidate [ngClass]="{ submitted: formSubmetido }">
               <div class="row">
                 <div class="form-group col-sm-12">
-                  <label class="form-control-label label-obrigatorio"
-                    >Nome
-                  </label>
+                  <label class="form-control-label label-obrigatorio">Nome</label>
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Preencha um nome de usuário"
                     formControlName="nome"
+                    [ngClass]="{ 'texto-erro': formSubmetido && formulario.get('nome').invalid }"
                   />
-                  <app-validator
-                    [formSubmitted]="this.formSubmetido"
-                    [errors]="this.formulario?.get('nome')?.errors"
-                  ></app-validator>
+                  <p *ngIf="formSubmetido && formulario.get('nome').hasError('required')" class="texto-erro">Campo obrigatório.</p>
                 </div>
 
                 <div class="form-group col-sm-12">
-                  <label class="form-control-label label-obrigatorio"
-                    >E-mail</label
-                  >
+                  <label class="form-control-label label-obrigatorio">E-mail</label>
                   <input
                     type="email"
                     class="form-control"
                     placeholder="Preencha um e-mail"
                     formControlName="email"
+                    [ngClass]="{ 'texto-erro': formSubmetido && formulario.get('email').invalid }"
                   />
-                  <app-validator
-                    [formSubmitted]="this.formSubmetido"
-                    [errors]="this.formulario?.get('email')?.errors"
-                  ></app-validator>
+                  <p *ngIf="formSubmetido && formulario.get('email').hasError('required')" class="texto-erro">Campo obrigatório.</p>
+                  <p *ngIf="formSubmetido && formulario.get('email').hasError('email')" class="texto-erro">E-mail inválido.</p>
                 </div>
+
                 <div class="form-group col-sm-12">
-                  <label class="form-control-label label-obrigatorio"
-                    >UserName</label
-                  >
+                  <label class="form-control-label label-obrigatorio">UserName</label>
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Preencha um UserName"
                     formControlName="username"
+                    [ngClass]="{ 'texto-erro': formSubmetido && formulario.get('username').invalid }"
                   />
-                  <app-validator
-                    [formSubmitted]="this.formSubmetido"
-                    [errors]="this.formulario?.get('email')?.errors"
-                  ></app-validator>
+                  <p *ngIf="formSubmetido && formulario.get('username').hasError('required')" class="texto-erro">Campo obrigatório.</p>
                 </div>
 
                 <div class="form-group col-sm-12">
-                  <label class="form-control-label label-obrigatorio"
-                    >Telefone
-                  </label>
+                  <label class="form-control-label label-obrigatorio">Telefone</label>
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Preencha o telefone"
                     formControlName="telefone"
                     mask="(00) 0000-00000"
+                    [ngClass]="{ 'texto-erro': formSubmetido && formulario.get('telefone').invalid }"
                   />
-                  <app-validator
-                    [formSubmitted]="this.formSubmetido"
-                    [errors]="this.formulario?.get('telefone')?.errors"
-                  ></app-validator>
+                  <p *ngIf="formSubmetido && formulario.get('telefone').hasError('required')" class="texto-erro">Campo obrigatório.</p>
                 </div>
 
                 <div class="form-group col-sm-12 col-md-12 col-lg-6">
-                  <label class="form-control-label label-obrigatorio"
-                    >Senha</label
-                  >
+                  <label class="form-control-label label-obrigatorio">Senha</label>
                   <input
                     type="password"
                     class="form-control"
                     placeholder="Preencha uma senha"
                     formControlName="senha"
+                    [ngClass]="{ 'texto-erro': formSubmetido && formulario.get('senha').invalid }"
                   />
                   <app-validator
-                    [formSubmitted]="this.formSubmetido"
-                    [errors]="this.formulario?.get('senha')?.errors"
+                    [formSubmitted]="formSubmetido"
+                    [errors]="formulario?.get('senha')?.errors"
                   ></app-validator>
                 </div>
 
                 <div class="form-group col-sm-12 col-md-12 col-lg-6">
-                  <label class="form-control-label label-obrigatorio"
-                    >Senha
-                  </label>
+                  <label class="form-control-label label-obrigatorio">Confirmar Senha</label>
                   <input
                     type="password"
                     class="form-control"
                     placeholder="Repita a senha"
                     formControlName="conf"
+                    [ngClass]="{ 'texto-erro': formSubmetido && formulario.get('conf').invalid }"
                   />
+
+                  <p *ngIf="formulario.get('conf').hasError('senhasDiferentes')" ngClass="texto-erro">
+                    As senhas não conferem
+                  </p>
                   <app-validator
-                    [formSubmitted]="this.formSubmetido"
-                    [errors]="this.formulario?.get('conf')?.errors"
+                    [formSubmitted]="formSubmetido"
+                    [errors]="formulario?.get('conf')?.errors"
                   ></app-validator>
                 </div>
 
-                <div class="form-group col-sm-12 action-buttons">
-                  <a
-                    class="btn btn-secondary float-left"
-                    [routerLink]="['login']"
-                    queryParamsHandling="preserve"
-                    (click)="voltar('operação cancelada')"
-                    >Voltar</a
-                  >
-                  <button
-                    type="submit"
-                    class="btn btn-primary float-right"
 
-                  >
-                    Salvar
-                  </button>
+                <div class="form-group col-sm-12 action-buttons">
+                  <a class="btn btn-secondary float-left" [routerLink]="['login']" queryParamsHandling="preserve" (click)="voltar('operação cancelada')">Voltar</a>
+                  <button type="submit" class="btn btn-primary float-right">Salvar</button>
                 </div>
               </div>
             </form>

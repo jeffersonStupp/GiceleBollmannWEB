@@ -31,8 +31,7 @@ export class UsuarioListagemComponent implements OnInit {
   }
 
   public obterUsuariosDaApi(): void {
-    // subscribe: oque o service tem que fazer quando tiver o retorno da api
-    this.usuarioService.obterTodos().subscribe(
+        this.usuarioService.obterTodos().subscribe(
       (resposta) => {
         if (resposta != null) {
           this.listaUsuarios = resposta;

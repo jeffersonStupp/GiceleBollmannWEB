@@ -18,7 +18,9 @@
 
   background-color: steelblue;
   box-shadow: -1px 3px 8px   rgb(73, 75, 75);
-
+  position: relative;
+  top: 0;
+  width: 100%;
 }
 
 

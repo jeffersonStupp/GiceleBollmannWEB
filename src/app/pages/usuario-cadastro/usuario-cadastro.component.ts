@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Usuario from 'src/app/models/usuario.model';
 import { AlertService } from 'src/app/services/alert.service';
@@ -27,24 +27,27 @@ export class UsuarioCadastroComponent implements OnInit {
   public ngOnInit(): void {
     document.title = 'Cadastro de usuário';
 
-
-
-
-
-
     this.inicializarConfigForm();
   }
 
   public submeterForm(): void {
     this.formSubmetido = true;
 
+
+
     if (this.formulario.invalid) {
       return;
     }
 
+
+
+
+
     let usuario: Usuario = new Usuario(this.formulario.getRawValue());
 
-    this.chamarApiParaAdicionar(usuario);
+
+  this.chamarApiParaAdicionar(usuario);
+
 
   }
 
@@ -56,58 +59,84 @@ export class UsuarioCadastroComponent implements OnInit {
         null,
         [Validators.required, Validators.maxLength(150), Validators.email],
       ],
-      username:[null,[Validators.required]],
-telefone:[null,[Validators.minLength(11),Validators.maxLength(15)]],
-      senha: [null, [Validators.required, Validators.maxLength(150)]],
-      conf: [null, [Validators.required, Validators.maxLength(150)]],
+      username: [null, [Validators.required]],
+      telefone: [null, [Validators.minLength(11),Validators.required, Validators.maxLength(15)]],
+      senha: [null, [Validators.required, Validators.required, Validators.minLength(6)]],
+      conf: [null],
       ativo: [true],
-      tipo: ["usuario"],
+      tipo: ['usuario'],
     });
+    this.formulario.get('conf').setValidators([Validators.required, Validators.minLength(6), this.senhaConfirmaSenhaValidator.bind(this)]);
   }
+  public  senhasconferem = false;
 
   public chamarApiParaAdicionar(usuario: Usuario): void {
-    this.usuarioService.adicionar(usuario).subscribe(
-      (resposta) => {
-        if (resposta != null) {
-          this.alertService.showToastrSuccess('Usuário cadastrado com sucesso');
-          this.router.navigate(['/usuario/listagem']);
-        } else {
-          this.alertService.showToastrError('Erro ao cadastrar usuário');
-        }
-      }, exception => {
-        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
-        this.alertService.showToastrError('Erro na requisição', mensagemErro);
-      });
-  }
 
-  public chamarApiParaAtualizar(usuario: Usuario): void {
-    this.usuarioService.atualizar(usuario).subscribe(
-      (resposta) => {
-        if (resposta != null) {
-          this.alertService.showToastrSuccess('Usuário atualizado com sucesso');
-          this.router.navigate(['/usuario/listagem']);
-        } else {
-          this.alertService.showToastrError('Erro ao atualizar usuário');
-        }
-      }, exception => {
-        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
-        this.alertService.showToastrError('Erro na requisição', mensagemErro);
-      });
-  }
+    const senha = this.formulario.get('senha').value;
+    const confirmaSenha = this.formulario.get('conf').value;
 
-  public chamarApiParaObterUsuarioPorId(id: number): void {
-    this.usuarioService.obterPorId(id).subscribe(
-      (resposta) => {
-        if (resposta != null) {
-          this.formulario.patchValue(resposta);
-        }
-      }, exception => {
-        let mensagemErro = typeof(exception?.error) == "string" ? exception?.error : '';
-        this.alertService.showToastrError('Erro na requisição', mensagemErro);
-      });
+if(senha === confirmaSenha){
+ this.senhasconferem = true;
+
+  this.usuarioService.adicionar(usuario).subscribe(
+    (resposta) => {
+
+
+        if (resposta != null ) {
+    this.alertService.showToastrSuccess('Usuário cadastrado com sucesso');
+    this.router.navigate(['/usuario/listagem']);
+  } else {
+    this.alertService.showToastrError('Erro ao cadastrar usuário');
   }
-  public voltar(mensagem:string){
+},
+(exception) => {
+  let mensagemErro =
+  typeof exception?.error == 'string' ? exception?.error : '';
+  this.alertService.showToastrError('Erro na requisição', mensagemErro);
+}
+);
+}else{
+  this.formulario.invalid;
+
+  this.alertService.showToastrError('Senhas não conferem');
+  return
+
+}
+
+}
+
+
+
+  public voltar(mensagem: string) {
+
     this.alertService.showToastrInfo(mensagem);
   }
 
+  private senhaConfirmaSenhaValidator(control: AbstractControl): { [key: string]: any } | null {
+    const senha = this.formulario.get('senha').value;
+    const confirmaSenha = control.value;
+
+    if (senha !== confirmaSenha) {
+      return { senhasDiferentes: true };
+    }
+
+    return null;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+

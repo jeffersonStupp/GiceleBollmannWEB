@@ -1,0 +1,13 @@
+.container{
+  margin:20px;
+
+  display: block;
+}
+.card
+{
+    margin:20px;
+    box-shadow: -1px 3px 8px   rgb(73, 75, 75);
+
+
+}
+

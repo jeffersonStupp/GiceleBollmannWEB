@@ -1,5 +1,8 @@
-<div class="containercustom">
-  <h2 class="centralizar-texto">Listagem de usuários</h2>
+<div class="cont">
+  <div class="esquerda"><app-dashnav></app-dashnav></div>
+  <div class="direita">
+    <div class="container">
+      <h2 class="centralizar-texto">Gestão de Usuários</h2>
 
   <table class="table table-striped">
     <thead>
@@ -14,12 +17,12 @@
         <th>
           <div>
             <a
-              class="btn btn-success"
+            class="btn btn-success"
               [routerLink]="['/cadastro']"
               queryParamsHandling="preserve"
               >Adicionar</a
-            >
-          </div>
+              >
+            </div>
         </th>
         <th></th>
       </tr>
@@ -37,9 +40,9 @@
         <td>
           <!-- Botão de Edição -->
           <a
-            class="btn btn-primary"
-            [routerLink]="['/usuario/edicao', usuario.id]"
-            >Editar</a
+          class="btn btn-primary"
+          [routerLink]="['/usuario/edicao', usuario.id]"
+          >Editar</a
           >
 
           <!-- Botão para alterar status -->
@@ -58,7 +61,7 @@
           (click)="this.confirmarExcluir(usuario.id)"
           >
 
-         
+
 
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
               <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
@@ -70,6 +73,7 @@
       </tr>
     </tbody>
   </table>
+</div>
 </div>
 
 <!-- <div class="container-fluid">
@@ -93,7 +97,7 @@
               [routerLink]="['/usuario/cadastro']"
               queryParamsHandling="preserve"
               >Adicionar</a
-            >
+              >
           </th>
         </tr>
       </thead>

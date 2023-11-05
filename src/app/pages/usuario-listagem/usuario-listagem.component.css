@@ -24,15 +24,15 @@
   width: 90px;
   }
 
-  .containercustom{
-    padding: 80px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
+
+
   svg{
     cursor: pointer;
   }
   svg:hover{
     color:red;
-   
+
+  }
+  .container{
+    margin-top: 20px;
   }

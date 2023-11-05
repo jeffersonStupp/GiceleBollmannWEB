@@ -39,6 +39,9 @@ import { MatListModule } from '@angular/material/list';
 import { DashhomeComponent } from './pages/dashboard/dashhome/dashhome.component';
 import { DashnavComponent } from './pages/dashboard/dashnav/dashnav.component';
 import { DasbodyComponent } from './pages/dashboard/dasbody/dasbody.component';
+import { CardProdutoComponent } from './components/card-produto/card-produto.component';
+import { ViewProdutoComponent } from './components/view-produto/view-produto.component';
+import { ProdutoCadastroComponent } from './pages/produto-cadastro/produto-cadastro.component';
 
 @NgModule({
   declarations: [
@@ -59,14 +62,14 @@ import { DasbodyComponent } from './pages/dashboard/dasbody/dasbody.component';
     DashhomeComponent,
     DashnavComponent,
     DasbodyComponent,
-    UsuarioCadastroComponent
-
-
+    UsuarioCadastroComponent,
+    CardProdutoComponent,
+    ViewProdutoComponent,
+    ProdutoCadastroComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
 
     CommonModule,
     ReactiveFormsModule,

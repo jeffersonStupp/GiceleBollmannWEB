@@ -10,6 +10,7 @@
 .card-body{
   background-color: whitesmoke;
   box-shadow: -1px 3px 8px   rgb(73, 75, 75);
+
 }
 .img{
   text-align: center;
@@ -23,14 +24,7 @@ background-color: steelblue;
   background-size: cover;
 
 }
-#titulo{
-  font-family: "Dancing Script";
-  font-size: 40px;
-  font-weight: bold;
-  margin:auto;
-  margin-bottom: 15px;
 
-}
 .btn {
   background-color: steelblue;
 }
@@ -39,10 +33,13 @@ background-color: steelblue;
   margin-top: 5px;
 }
 .texto-erro {
-  margin-top: 0.4em;
+  margin-top: 0.1em;
   color: red;
   border-left: 3px solid red;
   padding-left: 0.2em;
   border-color:red;
+}
+hr{
+  color:steelblue
 }
 

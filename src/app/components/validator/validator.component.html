@@ -1,7 +1,7 @@
 <div *ngIf="formSubmitted">
   <ng-container>
       <p *ngIf="errors && errors['required']" class="texto-erro">
-          Este campo é obrigatório
+        Campo obrigatório.
       </p>
       <p *ngIf="errors && errors['requiredTrue']" class="texto-erro">
           Este campo deve ser checado
@@ -48,8 +48,6 @@
       <p *ngIf="errors && errors['isValidCnpjCpf']" class="texto-erro">
           CNPJ ou CPF inválido
       </p>
-      <p *ngIf="errors && errors['passwordfalse']" class="texto-erro">
-        As senhas não conferem
-    </p>
+
   </ng-container>
 </div>
