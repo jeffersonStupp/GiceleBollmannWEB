@@ -48,5 +48,8 @@
       <p *ngIf="errors && errors['isValidCnpjCpf']" class="texto-erro">
           CNPJ ou CPF inválido
       </p>
+      <p *ngIf="errors && errors['passwordfalse']" class="texto-erro">
+        As senhas não conferem
+    </p>
   </ng-container>
 </div>

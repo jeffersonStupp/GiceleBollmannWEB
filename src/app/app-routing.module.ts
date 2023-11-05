@@ -7,24 +7,27 @@ import { UsuarioListagemComponent } from './pages/usuario-listagem/usuario-lista
 import { UsuarioCadastroComponent } from './pages/usuario-cadastro/usuario-cadastro.component';
 import { UsuarioLogadoGuard } from './guards/usuario-logado.guards';
 import { EdicaoComponent } from './pages/edicao/edicao.component';
+import { DashhomeComponent } from './pages/dashboard/dashhome/dashhome.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/principal', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: UsuarioCadastroComponent },
+
   {
     path: '',
     canActivate: [UsuarioLogadoGuard],
     component: BarraSuperiorComponent,
     children: [
-       { path: 'principal', component: MenuPrincipalComponent },
-      {
+      { path: 'principal', component: MenuPrincipalComponent },
+          {
         path: 'usuario',
         children: [
+
           { path: 'listagem', component: UsuarioListagemComponent },
-                 //{ path: 'cadastro', component: UsuarioCadastroComponent },
-                { path: 'edicao/:id', component: EdicaoComponent },
-         // { path: 'edicao', component: EdicaoComponent },
+          { path: 'edicao/:id', component: EdicaoComponent },
+          {path:'dashboard', component: DashhomeComponent},
+          //{ path: 'cadastro', component: UsuarioCadastroComponent },
         ],
       },
     ],

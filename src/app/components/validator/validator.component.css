@@ -1,5 +1,14 @@
 p{
-  margin: auto;
+  margin-top: 0.4em;
   color: red;
+  border-left: 3px solid red;
+  padding-left: 0.2em;
+}
+
+ .texto-erro {
+  margin-top: 0.4em;
+  color: red;
+  border-left: 3px solid red;
+  padding-left: 0.2em;
 }
 

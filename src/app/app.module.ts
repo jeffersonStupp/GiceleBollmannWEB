@@ -31,6 +31,14 @@ import { BarraInferiorComponent } from './components/barra-inferior/barra-inferi
 import { CarrocelComponent } from './components/carrocel/carrocel.component';
 import { EdicaoComponent } from './pages/edicao/edicao.component';
 import { AlertService } from './services/alert.service';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { DashhomeComponent } from './pages/dashboard/dashhome/dashhome.component';
+import { DashnavComponent } from './pages/dashboard/dashnav/dashnav.component';
+import { DasbodyComponent } from './pages/dashboard/dasbody/dasbody.component';
 
 @NgModule({
   declarations: [
@@ -48,11 +56,17 @@ import { AlertService } from './services/alert.service';
     BarraInferiorComponent,
     CarrocelComponent,
     EdicaoComponent,
+    DashhomeComponent,
+    DashnavComponent,
+    DasbodyComponent,
+    UsuarioCadastroComponent
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-   
+
 
     CommonModule,
     ReactiveFormsModule,
@@ -62,6 +76,11 @@ import { AlertService } from './services/alert.service';
     HttpClientModule,
     ToastrModule.forRoot(),
     NgxMaskModule.forRoot(),
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [
     UsuarioLogadoGuard,
